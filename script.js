@@ -1,18 +1,17 @@
 function curry(callback) {
-	const collected=[];
-	
-	function curried(...args) {
-		if(args.length===0){
-			const result=callback(...collected);
-			collected.length=0;
-			return result;
-		}
+  function curried(...args) {
+    if (args.length === 0) {
+      return callback();
+    }
 
-		collected.push(...args);
-		return curried;
-	}
+    if (callback.length === 0) {
+      return callback(...args);
+    }
 
-	return curried;
+    return curry((...rest) => callback(...args, ...rest));
+  }
+
+  return curried;
 }
 
-module.exports=curry
+module.exports = curry;
