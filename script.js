@@ -15,4 +15,4 @@ function curry(callback) {
 	return curried;
 }
 
-module.export=curry
+module.exports=curry
